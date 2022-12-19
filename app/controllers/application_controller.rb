@@ -5,12 +5,6 @@ class ApplicationController < ActionController::Base
 	    return if current_user && current_user.admin?
 	    redirect_to(root_path, flash: { alert: "Sorry, you are not allowed to view that page" })
     end
-
-    def current_user
-	    return unless session[:user_id]
-
-	    @current_user ||= User.find_by(id: session[:user_id])
-	end
 	
 	def after_sign_in_path_for(user)
 		flash[:notice]="Login successful. Hi, #{current_user.name}!" 
