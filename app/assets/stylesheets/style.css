@@ -1947,7 +1947,7 @@ form a:hover {
      margin-bottom: 12px;
      border-radius: inherit !important;
      padding: 11px 11px;
-     color: #c1bebe;
+     color: black;
 }
 .form-control:focus {
      box-shadow: none;
@@ -2073,6 +2073,15 @@ ul.location_icon span {
 }
 .contact-page .form-control {
      margin-bottom: 20px;
+}
+/** forms **/
+
+.siva {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 /** slider arrow **/
