@@ -1,10 +1,10 @@
 <div class="form-control">
   <h1>Admin Dashboard</h1>
   <ul>
-    <strong>Total no.of users:<%= User.count %></strong>
-
-    <li><%= link_to 'Users', users_path %></li>
-    <strong>Total no.of plants:<%= Store.count %></strong>
-    <li><%= link_to 'Plants', stores_path %></li>
+    <h3>Total no.of users:<%= User.count %></h3>
+    <li><a class="btn btn-lg btn-primary" href="users" role="button">Users</a></li>
+    <!-- <li><%= link_to 'Users', users_path %></li> -->
+    <h3>Total no.of plants:<%= Store.count %></h3>
+    <li><a class="btn btn-lg btn-primary" href="stores" role="button">Plants</a></li>
   </ul>
 </div>

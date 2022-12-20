@@ -15,6 +15,16 @@ class ApplicationController < ActionController::Base
 		root_path 
     end
 
+    def current_cart
+		begin
+			Cart.find(session[:cart_id])
+		rescue ActiveRecord::RecordNotFound
+			cart=Cart.create
+			session[:cart_id]=cart.id
+			cart
+		end
+	end
+
     protected
         def configure_permitted_parameters
             devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:name, :email, :phone_number, :password) }

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  resources :line_items
+  resources :carts
   get 'gallery/index'
-  get 'gallery/search'
+  # get 'gallery/search'
   resources :stores
   get 'admin' => 'admin#home'
   devise_for :users
