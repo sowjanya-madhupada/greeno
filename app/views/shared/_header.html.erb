@@ -15,8 +15,9 @@
                         <div class="limit-box">
                            <nav class="main-menu">
                               <ul class="menu-area-main">
-                                 <li> <a href="/">Home</a> </li>
-                                   
+                                 <% unless request.path == "/" %>
+                                    <li> <a href="/">Home</a> </li>
+                                 <% end %>  
                                   <% if user_signed_in? %>
                                    <% $text=current_user.email%>
                                        <strong>Logged in as <%= current_user.name %></strong>

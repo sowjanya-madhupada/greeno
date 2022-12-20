@@ -11,35 +11,25 @@
    </div>
    <div class="container">
       <div class="row">
-           <% count=0 %>
+           
            <% (Store.all).each do |p| %>
-               <% if (count%4)==0 %>
-               <% end %>
-               <% count+=1 %>
          <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
             <div class="plants-box">
                <figure><div class="img"><%= image_tag p.product_image,height: "289.99",width: "193.84" %><br></figure></br>
                <!-- <figure><img src="/assets/plant1.jpg" alt="img"/></figure> -->
                <h1>Name: <%= p.name %><br>
                    Price: <%= p.price %><br></h1>
-               <!-- <div class="heading_container heading_center">
-                  <div class="btn_box"> -->
-                  <div style="float: center; width: auto; color: white;">
+               <div class="heading_container heading_center">
+                  <div class="btn_box">
                      <%= button_to 'Add to Cart', line_items_path(:store_id => p.id)%>
-                  </div>
+                  
         
-               <!-- </div></div> -->
+               </div></div>
             </div>
          </div>
         <% end %>
       </div>
    </div>
-   <div class="heading_container heading_center">
-      <div class="btn-box">
-        <a href="">
-          View All Products
-        </a>
-      </div>
-   </div>
+   
    
 </div>
