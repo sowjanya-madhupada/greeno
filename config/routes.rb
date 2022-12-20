@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'gallery/index'
+  get 'gallery/search'
+  resources :stores
   get 'admin' => 'admin#home'
   devise_for :users
   resources :users

@@ -1,5 +1,10 @@
-<h1>Admin Dashboard</h1>
-<ul>
-  <li><%= link_to 'Users', users_path %></li>
-  
-</ul>
+<div class="form-control">
+  <h1>Admin Dashboard</h1>
+  <ul>
+    <strong>Total no.of users:<%= User.count %></strong>
+
+    <li><%= link_to 'Users', users_path %></li>
+    <strong>Total no.of plants:<%= Store.count %></strong>
+    <li><%= link_to 'Plants', stores_path %></li>
+  </ul>
+</div>
