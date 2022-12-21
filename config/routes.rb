@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :line_items
   resources :carts
   get 'gallery/index'
   # get 'gallery/search'
   resources :stores
   get 'admin' => 'admin#home'
-  devise_for :users
-  resources :users
+  
   #get 'home/index'
   root to: "home#index"
 
