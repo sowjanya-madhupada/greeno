@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
 		flash[:notice]="Login successful. Hi, #{current_user.name}!" 
 		root_path
 	end
+	
 	def after_sign_out_path_for(user)
 		flash[:notice]="Logout successful. See you soon!"
 		root_path 
