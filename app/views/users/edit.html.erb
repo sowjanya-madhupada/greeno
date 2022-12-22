@@ -1,0 +1,26 @@
+<div class="form-control">	
+	<h1>Edit User</h1>
+		<%= form_with(model: @user, local: true) do |form| %>
+		     <% if @user.errors.any? %>
+			    <%= render "shared/errors", target: @user %>
+			  <% end %>
+			<p>
+				<%= form.label :name %>
+				<%= form.text_field :name%>
+			</p>
+	        <p>
+				<%= form.label :email %>
+				<%= form.text_field :email %>
+	        </p>
+	        <p>
+				<%= form.label :phone_number %>
+				<%= form.text_field :phone_number%>
+	        </p>
+
+	        <p>
+			    </br><%= form.submit %>
+			</p>
+		<% end %>
+
+	</br><strong><%= link_to "Back", users_path %></strong>
+</div>

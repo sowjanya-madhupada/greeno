@@ -1,0 +1,17 @@
+<div class="form-control">
+	
+	<%= link_to edit_user_path(@user), class: "btn btn-info" do %>
+	    Edit
+	<% end %>
+	<%= link_to users_path, class: "btn btn-info" do %>
+	    Back
+	<% end %>
+	
+	<div>
+		<br><h1><%= @user.name %></h1>
+		Email:
+		<%= @user.email %></br>
+		Phone Number:
+		<%= @user.phone_number %>
+	</div>	
+</div>
