@@ -1,0 +1,15 @@
+<%= image_tag @store.plant_image %>
+<h2><%= @store.name.titleize %></h2>
+<strong>Price:  <%= @store.price %></br>
+Season:  <%= @store.season %></br>
+Plant Type:  <%= @store.plants_type %></br>
+Quantity:  <%= @store.quantity %></strong>
+
+<div>
+	</br><%= link_to edit_store_path(@store), class: "btn btn-danger" do %>
+	   Edit
+	<%end%>
+	<%= link_to stores_path(@store), class: "btn btn-danger" do %>
+	   Back
+	<%end%>
+</div>

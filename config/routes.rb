@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :users, only: [:index, :show, :edit, :update]
+  resources :stores
   resources :line_items
   resources :carts
   get 'gallery/index'

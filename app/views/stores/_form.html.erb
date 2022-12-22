@@ -1,0 +1,40 @@
+<div class="form-control">
+	<%= form_with model: @store, local: true do |form| %>
+	    <% if @store.errors.any? %>
+	       <%= render "shared/errors", target: @store %>
+	    <% end %>
+	    <div class="field">
+		   <%= form.label :name %>
+		   <%= form.text_field :name %>
+		</div>
+		<div class="field">
+           <%= form.label :price %>
+		   <%= form.text_field :price %>
+		</div>
+
+		<div class="field">
+		   <%= form.label :season %>
+		   <%= form.text_field :season %>
+		</div>
+
+        <div class="field">
+		   <%= form.label :plants_type %>
+		   <%= form.text_field :plants_type %>
+		</div>
+
+        <div class="field">
+		   <%= form.label :quantity %>
+		   <%= form.text_field :quantity %>
+		</div>
+
+		<div class="field">
+		   <%= form.label :plant_image %>
+		   <%= form.file_field :plant_image %>
+		</div>
+        
+        <div>
+	       <%= form.submit %>
+	    </div>
+
+	<% end %>   
+</div>

@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     	if @user.update(user_params)
     	   redirect_to user_path, notice: "User was successfully updated." 
     	else
-           render :edit, notice: "User was not updated please check again."
+           render :edit, alert: "User was not updated please check again."
     	end
     end
 
