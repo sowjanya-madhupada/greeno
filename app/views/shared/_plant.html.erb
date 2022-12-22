@@ -15,9 +15,11 @@
            <% (Store.all).each do |p| %>
          <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
             <div class="plants-box">
-               <figure><div class="img"><%= image_tag p.product_image,height: "289.99",width: "193.84" %><br></figure></br>
+               <% if p.plant_image.attached? %>
+                  <figure><div class="img"><%= image_tag p.plant_image,height: "289.99",width: "193.84" %><br></figure></br>
+               <% end %>
                <!-- <figure><img src="/assets/plant1.jpg" alt="img"/></figure> -->
-               <h1>Name: <%= p.name %><br>
+               <h1>Name: <%= p.name.titleize %><br>
                    Price: <%= p.price %><br></h1>
                <div class="heading_container heading_center">
                   <div class="btn_box">

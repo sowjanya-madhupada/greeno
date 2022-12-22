@@ -1,32 +1,35 @@
-<h1>Plants</h1>
-<table class="table table-striped">
-	<thead>
-		<tr>
-			<th>Name Of Plant</th>
-			<th>Price</th>
-			<th>Season Of Plant</th>
-			<th>Type of Plant</th>
-			<th>Stock</th>
-			<th>Actions</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @stores.each do |store| %>
-		<tr>
-			<td><%= store.name %>
-			<td><%= store.price %>
-			<td><%= store.season %>
-			<td><%= store.plants_type %>
-			<td><%= store.quantity %>
-			<td><u><%= link_to "View", store %></u> 
-			    <u><%= link_to "Edit", edit_store_path(store) %></u>
-			    <u><%= link_to "Destroy", store, method: :delete %></u>
-			</td>
+<section>
+	<h1>Plants</h1>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Name Of Plant</th>
+				<th>Price</th>
+				<th>Season Of Plant</th>
+				<th>Type of Plant</th>
+				<th>Stock</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @stores.each do |store| %>
+			<tr>
+				<td><%= store.name %>
+				<td><%= store.price %>
+				<td><%= store.season %>
+				<td><%= store.plants_type %>
+				<td><%= store.quantity %>
+				<td><u><%= link_to "View", store %></u> 
+				    <u><%= link_to "Edit", edit_store_path(store) %></u>
+				    <u><%= link_to "Destroy", store, method: :delete %></u>
+				</td>
 
-        </td>
-        <% end %>
-	</tbody>
-</table>
-<%= link_to new_store_path, class: "btn btn-warning" do%>
-    Crete new plant
-<% end %>
+	        </td>
+	        <% end %>
+		</tbody>
+	</table>
+	<%= link_to new_store_path, class: "btn btn-warning" do%>
+	    Crete new plant
+	<% end %></br>
+	<strong><%= will_paginate @store %></strong>
+</section>
