@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   resources :carts
   get 'gallery/index'
   # get 'gallery/search'
-  resources :stores
   get 'admin' => 'admin#home'
   
   #get 'home/index'
