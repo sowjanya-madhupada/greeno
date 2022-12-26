@@ -3,10 +3,13 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show, :edit, :update]
   resources :stores
   get 'gallery/index'
-  # get 'gallery/search'
+  resources :carts, only: [:show, :destroy]
+  resources :line_items, only: [:create, :destroy]
+  post "line_item/:id/add", to: "line_items#add_quantity", as: "line_item_add"
+  post "line_item/:id/reduce", to: "line_items#reduce_quantity", as: "line_item_reduce"
   get 'admin' => 'admin#home'
   
-  #get 'home/index'
+  
   root to: "home#index"
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

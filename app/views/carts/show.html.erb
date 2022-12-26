@@ -1,0 +1,47 @@
+<% if @cart.line_items.empty? %>   
+   <%= render 'shared/plant' %>
+<% else %>
+    <h3>Your Cart</h3>
+    <table class="table table-striped">
+        <thead>
+        	<tr>
+        	    <th>Quantity</th>
+                <th>Plant Name</th>
+                <th>Price</th>
+                <th>Amount</th>
+                <th>      </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            	<% @cart.line_items.each do |line_item| %>
+                    <tr>
+                	   <td><%= line_item.quantity %> &times; </td>
+                	   <td><%= line_item.store.name %></td>
+                       <td><%= line_item.store.price %></td>
+                	   <td><%= number_to_currency(line_item.total_price) %></td>
+                       <td>
+                           <u><%= link_to "Add(+1)", line_item_add_path(line_item), method: :post%></u>&nbsp
+                           <u><%= link_to "Reduce(-1)", line_item_reduce_path(line_item), method: :post %></u>&nbsp
+
+                           <u><%= link_to "Remove", line_item_path(line_item), method: :delete %></u>
+                               
+                        </td>
+                    </tr>
+            	<% end %>
+            </tr>
+            <tr>
+                <th colspan="3">Total Amount:</th>
+                <th class="total_cell"><%= number_to_currency(@cart.total_price) %></th>
+            </tr>
+        </tbody>
+    </table>
+
+    <%= link_to @cart , method: :delete, class: "btn btn-success" do %>
+        Empty Cart
+    <% end %>
+    <%= link_to gallery_index_path, class: "btn btn-success" do %>
+        Continue Shopping
+    <% end %>
+
+<% end %>

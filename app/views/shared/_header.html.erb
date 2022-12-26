@@ -28,10 +28,25 @@
                                  
                                       <li><%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %></li>
                                      <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
+                                    <% unless current_user.cart_id.nil? %> 
+                                        <li><%= link_to cart_path(current_user.cart_id) do %>
+                                             <img src="/assets/shopping-cart.png" alt="#">
+                                          <% end %>
+                                          </li>
+                                    <% end %>
+
                                   <% else %>
                                     <li><%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %></li>
                                     <li><%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %></li>
+                                    
+                                    <% unless !(LineItem.where(cart_id: session[:cart_id]).any?) %>
+                                       <li><%= link_to cart_path(session[:cart_id]) do %>
+                                             <img src="/assets/shopping-cart.png" alt="#">
+                                          <% end %>
+                                          </li>
+                                    <% end %>
                                   <% end %>
+
 
                                  <!-- <li><a href="/users">Plants</a></li> -->
                                  <li class="last"><a href="#"><img src="/assets/search_icon.png" alt="icon"/></a></li>

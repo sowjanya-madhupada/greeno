@@ -21,12 +21,9 @@
                <!-- <figure><img src="/assets/plant1.jpg" alt="img"/></figure> -->
                <h1>Name: <%= p.name.titleize %><br>
                    Price: <%= p.price %><br></h1>
-               <div class="heading_container heading_center">
-                  <div class="btn_box">
-                     <%= button_to 'Add to Cart', line_items_path(:store_id => p.id)%>
-                  
-        
-               </div></div>
+               <%= link_to line_items_path(store_id: p.id), method: :post, class: "btn btn-success" do %>
+                  Add To Cart
+               <% end %>
             </div>
          </div>
         <% end %>
