@@ -3,15 +3,15 @@ class UsersController < ApplicationController
 
 	def index
 		@users = User.paginate(page: params[:page], per_page: 5)
-    end
+       end
 
-    def update
-    	if @user.update(user_params)
-    	   redirect_to user_path, notice: "User was successfully updated." 
-    	else
-           render :edit, alert: "User was not updated please check again."
-    	end
-    end
+	def update
+		if @user.update(user_params)
+		   redirect_to user_path, notice: "User was successfully updated." 
+		else
+	    render :edit, alert: "User was not updated please check again."
+		end
+	end
 
     private
 
