@@ -29,6 +29,7 @@ class ChargesController < ApplicationController
     	CheckoutMailer.purchase.deliver
     	session[:cart_id] = nil
     	current_user.cart_id = nil
+    	current_user.save
     end
 
 		
