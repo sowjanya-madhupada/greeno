@@ -9,7 +9,7 @@ class LineItemsController < ApplicationController
 			@line_item.save
 			redirect_to cart_path(@cart), notice: "#{plant.name} was added to your cart"
 		else
-			redirect_to gallery_index_path, notice: "Sorry there is no stock for the #{@line_item.store.name}"
+			redirect_to gallery_index_path, alert: "Sorry there is no stock for the #{@line_item.store.name}"
 		end
 
 	end
@@ -20,7 +20,7 @@ class LineItemsController < ApplicationController
 			@line_item.save 
 			redirect_to cart_path(current_cart)
 		else
-			redirect_to cart_path(current_cart), notice: "Sorry there is no stock for the #{@line_item.store.name}"
+			redirect_to cart_path(current_cart), alert: "Sorry there is no stock for the #{@line_item.store.name}"
 		end
 	end 
 

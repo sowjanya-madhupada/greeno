@@ -1,4 +1,5 @@
 class StoresController < ApplicationController
+    before_action :check_admin
     before_action :set_store, only: %i[show edit update destroy]
     layout "admin"
     
