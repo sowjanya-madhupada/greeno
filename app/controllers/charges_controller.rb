@@ -26,7 +26,9 @@ class ChargesController < ApplicationController
     	flash[:alert] = e.message
     	redirect_to new_charge_path
     else
-    	binding.pry
+    	CheckoutMailer.purchase.deliver
+    	session[:cart_id] = nil
+    	current_user.cart_id = nil
     end
 
 		

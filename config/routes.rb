@@ -9,7 +9,6 @@ Rails.application.routes.draw do
   post "line_item/:id/add", to: "line_items#add_quantity", as: "line_item_add"
   post "line_item/:id/reduce", to: "line_items#reduce_quantity", as: "line_item_reduce"
   resources :charges, only: [:new, :create]
-  get 'admin' => 'admin#home'
   
   
   root to: "home#index"

@@ -1,5 +1,5 @@
-<section>
-	<h1>Plants</h1>
+<div class="form-control">
+	<h1>Plants: <%= Store.all.to_a.sum { |item| item.quantity }%></h1>
 	<table class="table table-striped">
 		<thead>
 			<tr>
@@ -32,4 +32,5 @@
 	    Crete new plant
 	<% end %></br>
 	<strong><%= will_paginate @store %></strong>
-</section>
+	
+</div>

@@ -1,5 +1,6 @@
 class StoresController < ApplicationController
     before_action :set_store, only: %i[show edit update destroy]
+    layout "admin"
     
 	def index
 		@stores = Store.paginate(page: params[:page], per_page: 10)

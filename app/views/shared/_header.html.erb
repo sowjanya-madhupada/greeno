@@ -19,11 +19,11 @@
                                     <li> <a href="/">Home</a> </li>
                                  <% end %>  
                                   <% if user_signed_in? %>
-                                   <% $text=current_user.email%>
+                                   <% $text=current_user %>
                                        <strong>Logged in as <%= current_user.name %></strong>
 
                                        <% if current_user.admin? %>
-                                          <li><%= link_to "Admin", admin_path, :class => 'navbar-link'  %></li>
+                                          <li><%= link_to "Admin", users_path, :class => 'navbar-link'  %></li>
                                        <% end %>
                                  
                                       <li><%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %></li>

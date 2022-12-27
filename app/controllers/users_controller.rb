@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 	before_action :set_user, only: %i[show edit update destroy]
+	layout "admin"
 
 	def index
 		@users = User.paginate(page: params[:page], per_page: 5)
