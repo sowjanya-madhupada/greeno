@@ -16,3 +16,22 @@
 .spacing {
     margin-top: 200px;
 }
+.centered-text {
+  text-align: center;
+}
+.text-link {
+    font-size: 20px;
+    text-decoration-line: underline;
+    padding: 0 0 0 626px;
+    
+}
+.form-padding {
+    padding: 0px 0 0 600px;
+}
+.form-select {
+    width: 25%;
+    height: inherit
+}
+.centered-result {
+    padding-left: 450px;
+}

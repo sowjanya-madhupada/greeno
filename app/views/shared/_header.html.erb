@@ -47,12 +47,12 @@
                                     <% end %>
                                   <% end %>
 
+                                 <li><%= form_tag("/gallery/index", method: "get") do %>
 
-                                 <!-- <li><a href="/users">Plants</a></li> -->
-                                 <!-- <li class="last"><a href=""><img src="/assets/search_icon.png" alt="icon"/></a></li> -->
-                                 <li><%= form_tag("/gallery/search", method: "get") do %>
-                                      <%= text_field_tag(:search) %>
-                                      <%= submit_tag("Search") %>
+                                       <%= select_tag :filter, options_for_select(filter_by_plant,params[:filter]), class: 'custom-select form-select', onchange: "this.form.submit()" %> 
+                                      <%= text_field_tag :q, params[:q],  placeholder: 'search...' %>
+                                     <%= submit_tag("Search") %>
+                                      
                                     <% end %></li>
                               </ul>
                            </nav>
@@ -64,3 +64,4 @@
          </div>
          <!-- end header inner -->
 </header>
+

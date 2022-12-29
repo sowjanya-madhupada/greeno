@@ -11,22 +11,25 @@
    </div>
    <div class="container">
       <div class="row">
-           
-           <% @plants.each do |p| %>
-         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-            <div class="plants-box">
-               <% if p.plant_image.attached? %>
-                  <figure><div class="img"><%= image_tag p.plant_image,height: "289.99",width: "193.84" %><br></figure></br>
-               <% end %>
-               <!-- <figure><img src="/assets/plant1.jpg" alt="img"/></figure> -->
-               <h1>Name: <%= p.name.titleize %><br>
-                   Price: <%= p.price %><br></h1>
-               <%= link_to line_items_path(store_id: p.id), method: :post, class: "btn btn-success" do %>
-                  Add To Cart
-               <% end %>
+            <% if @plants.blank? %>
+               <h1 class="centered-result">No Search Results Found</h1>
+            <% else %>
+              <% @plants.each do |p| %>
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+               <div class="plants-box">
+                  <% if p.plant_image.attached? %>
+                     <figure><div class="img"><%= image_tag p.plant_image,height: "289.99",width: "193.84" %><br></figure></br>
+                  <% end %>
+                  <!-- <figure><img src="/assets/plant1.jpg" alt="img"/></figure> -->
+                  <h1>Name: <%= p.name.titleize %><br>
+                      Price: <%= p.price %><br></h1>
+                  <%= link_to line_items_path(store_id: p.id), method: :post, class: "btn btn-success" do %>
+                     Add To Cart
+                  <% end %>
+               </div>
             </div>
-         </div>
-        <% end %>
+           <% end %>
+           <% end %>
       </div>
    </div>
    
