@@ -11,6 +11,7 @@ class ConversationsController < ApplicationController
 			@conversation = Conversation.between(params[:sender_id],params[:recipient_id]).first 
 		else 
 			@conversation = Conversation.create(conversation_params)
+			@conversation.cart_id = current_cart.id
 			@conversation.save 
 		end 
 		redirect_to conversation_messages_path(@conversation)

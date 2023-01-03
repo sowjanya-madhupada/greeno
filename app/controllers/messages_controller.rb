@@ -3,8 +3,13 @@ class MessagesController < ApplicationController
 	before_action :authenticate_user!
 
 	def index 
-		@messages = @conversation.messages 
-		@message = @conversation.messages.new 
+		if current_user.id == @conversation.sender_id || current_user.admin?
+			@messages = @conversation.messages 
+			@message = @conversation.messages.new 
+		else
+			redirect_to root_path, alert: "you do not have permission for this conversation"
+		end
+
 	end 
 
 	def new 

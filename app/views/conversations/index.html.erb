@@ -1,13 +1,18 @@
 <h1>My Inbox</h1>
 <h1>All Conversations From:</h1>
 <% @conversations.each do |conversation| %>
- <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
-  <% if conversation.sender_id == current_user.id %>
-   <% recipient = User.find(conversation.recipient_id) %>
-  <% else %>
-   <% recipient = User.find(conversation.sender_id) %>
-  <% end %>
-  <h3><u><%= link_to recipient.email, conversation_messages_path(conversation)%></u></h3>
- <% end %>
+    <tr>
+     <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
+      <% if conversation.sender_id == current_user.id %>
+       <% recipient = User.find(conversation.recipient_id) %>
+      <% else %>
+       <% recipient = User.find(conversation.sender_id) %>
+      <% end %>
+      <h3><u><%= link_to recipient.email, conversation_messages_path(conversation)%></u></h3>
+     <% end %>
+     <% if current_user.admin? %>
+      <h3><u><%= link_to "Cart", cart_list_path(conversation.cart) %></u></h3></br>
+      <% end %>
+    </tr>
 <% end %>
 
