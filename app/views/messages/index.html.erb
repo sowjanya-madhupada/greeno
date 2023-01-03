@@ -12,9 +12,13 @@
             <tbody>
                 <% @messages.each do |message| %>
                    <tr>
-                    <% if message.body && !(message.user_id == current_user.id ) %>
+                    <% if message.body %>
                       <% user = User.find(message.user_id) %>
-                      <td><%= user.name %></td>
+                      <% if message.user_id == current_user.id %>
+                            <td>You</td>
+                      <% else %>
+                         <td><%= user.name %></td>
+                      <% end %>
                       <td><%= message.body %></td>
                       <td><%= message.created_at.strftime('%Y-%m-%d') %></td>
                      <% end %>
