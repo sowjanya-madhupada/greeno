@@ -3,7 +3,7 @@ class CartsController < ApplicationController
   layout "admin", :only => [:index,:cart_list]
 
   def index
-    @carts = Cart.where.not(user_id: nil)
+    @carts = Cart.where.not(user_id: nil).paginate(page: params[:page], per_page: 10)
   end
 
   def cart_list
