@@ -18,18 +18,17 @@ class ChargesController < ApplicationController
 	      amount: @amount,
 	      currency: DEFAULT_CURRENCY
 	    )
-
-
-        
-
+    
     rescue Stripe::CardError => e 
     	flash[:alert] = e.message
     	redirect_to new_charge_path
     else
-    	CheckoutMailer.purchase.deliver
-    	session[:cart_id] = nil
-    	current_user.cart_id = nil
-    	current_user.save
+    	CheckoutMailer.purchase(current_cart,current_user).deliver
+    	current_cart.line_items.each do |item|
+    		item.store.quantity  -=  item.quantity
+    		item.store.save
+    	end
+    	Cart.find(session[:cart_id]).update(purchased_at: Date.today)
     end
 
 		

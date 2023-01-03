@@ -1,4 +1,22 @@
-<h1>Hello <%= $text.name %></h1><br/>
-<strong>your order has been placed.</strong><br/>
-
-thank you for shopping Greeno!!!			  
+<h2>Hi <%= @user.name %>! Your order has been placed</h2>
+<h4>Order details are:</h4>
+<style> 
+#customers { font-family: Arial, Helvetica, sans-serif; border-collapse: collapse; width: 80%; } #customers td, #customers th { border: 1px solid #ddd; padding: 8px; } #customers tr:nth-child(even){background-color: #f2f2f2;} #customers tr:hover {background-color: #ddd;} #customers th { padding-top: 12px; padding-bottom: 12px; text-align: left; background-color: #583c66; color: white; } 
+</style>
+<table id="customers">
+	<tr> <th>Quanitity</th> <th>Plant Name</th><th>Price</th> <th>Amount</th> </tr>
+	<% @cart.line_items.each do |line_item| %>
+        <tr>
+    	   <td><%= line_item.quantity %> &times; </td>
+    	   <td><%= line_item.store.name %></td>
+           <td><%= number_to_currency(line_item.store.price, unit: "₹") %></td>
+    	   <td><%= number_to_currency(line_item.total_price, unit: "₹") %></td>
+        </tr>
+	<% end %>
+	<tr>
+		<td colspan="3">Total Amount Paid</td>
+		<td class="total_cell"><%= number_to_currency(@cart.total_price, unit: "₹")  %></td>
+	</tr>
+</table>
+<h2>Thank you shopping on Greeno......<h2>
+			  

@@ -1,9 +1,7 @@
 class CheckoutMailer < ApplicationMailer
-	def purchase
-		
-	  
-	    mail(:to => $text.email, :subject => "Your order has been processed!")
-
-    end
-
+	def purchase(cart,user)
+		@cart = cart
+		@user = user
+		mail(:to => @user.email, :subject => "Your order has been processed!")
+	end
 end
