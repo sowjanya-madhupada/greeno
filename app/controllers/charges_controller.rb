@@ -29,6 +29,7 @@ class ChargesController < ApplicationController
     		item.store.save
     	end
     	Cart.find(session[:cart_id]).update(purchased_at: Date.today)
+    	session[:cart_id] = nil
     end
 
 		
