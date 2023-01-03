@@ -18,34 +18,48 @@
                                  <% unless request.path == "/" %>
                                     <li> <a href="/">Home</a> </li>
                                  <% end %>  
-                                  <% if user_signed_in? %>
-                                   <% $text=current_user %>
-                                       <strong>Logged in as <%= current_user.name %></strong>
+                                 <% if user_signed_in? %>
+                                    <strong>Logged in as <%= current_user.name %></strong>
 
-                                       <% if current_user.admin? %>
-                                          <li><%= link_to "Admin", users_path, :class => 'navbar-link'  %></li>
-                                       <% end %>
+                                    <% if current_user.admin? %>
+                                       <li><%= link_to "Admin", users_path, :class => 'navbar-link'  %></li>
+                                    <% end %>
                                  
-                                      <li><%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %></li>
-                                     <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
-                                    <% unless current_user.cart_id.nil? %> 
-                                        <li><%= link_to cart_path(current_user.cart_id) do %>
-                                             <img src="/assets/shopping-cart.png" alt="#">
-                                          <% end %>
-                                          </li>
+                                    <li><%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %></li>
+                                    <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
+
+                                    
+
+                                    <% cart = Cart.find_by(user_id: current_user.id, purchased_at: nil) %>
+                                    <% if  cart.present? %>
+                                       <% session[:cart_id] = cart.id %>
+                                       <li><%= link_to cart_path(session[:cart_id]) do %>  <img src="/assets/shopping-cart.png" alt="#">
+                                       <% end %>
                                     <% end %>
 
-                                  <% else %>
+                                    <% messages = Message.find_by(user_id: current_user.id) %>
+                                    <% if messages.present? %>
+                                       <li><%= link_to "Messages", conversations_path %></li>
+                                    <% end %>
+                                    
+                                      
+                                 
+
+                                 <% else %>
                                     <li><%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %></li>
                                     <li><%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %></li>
-                                    
-                                    <% unless !(LineItem.where(cart_id: session[:cart_id]).any?) %>
+
+                                    <% if (session[:cart_id]) && (LineItem.find_by(cart_id: session[:cart_id] )) %>
                                        <li><%= link_to cart_path(session[:cart_id]) do %>
                                              <img src="/assets/shopping-cart.png" alt="#">
-                                          <% end %>
-                                          </li>
+                                          <% end %></li>
                                     <% end %>
+                                    
+                                    
                                   <% end %>
+                                  
+
+                                  
 
                                  <li><%= form_tag("/gallery/index", method: "get") do %>
 
