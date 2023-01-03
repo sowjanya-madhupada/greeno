@@ -1,0 +1,35 @@
+<h3>User <%=  @cart.user.name %> Cart</h3>
+    <table class="table table-striped">
+        <thead>
+        	<tr>
+        	    <th>Quantity</th>
+                <th>Plant Name</th>
+                <th>Price</th>
+                <th>Amount</th>
+                <th>      </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            	<% @cart.line_items.each do |line_item| %>
+                    <tr>
+                	   <td><%= line_item.quantity %> &times; </td>
+                	   <td><%= line_item.store.name %></td>
+                       <td><%= number_to_currency(line_item.store.price, unit: "₹") %></td>
+                	   <td><%= number_to_currency(line_item.total_price, unit: "₹") %></td>
+                       
+            	<% end %>
+            </tr>
+            <tr>
+                <th colspan="3">Total Amount:</th>
+                <th class="total_cell"><%= number_to_currency(@cart.total_price, unit: "₹") %></th>
+            </tr>
+        </tbody>
+    </table>
+
+    <%= link_to carts_path ,  class: "btn btn-success" do %>
+        Back
+    <% end %>
+    
+    
+

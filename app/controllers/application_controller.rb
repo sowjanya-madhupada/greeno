@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 	before_action :configure_permitted_parameters, if: :devise_controller?
-    
+    helper_method :current_cart
 	def check_admin
 	    return if current_user && current_user.admin?
 	    redirect_to(root_path, flash: { alert: "Sorry, you are not allowed to view that page" })
@@ -12,24 +12,21 @@ class ApplicationController < ActionController::Base
 	end
 	
 	def after_sign_out_path_for(user)
+		session[:cart_id] = nil
 		flash[:notice]="Logout successful. See you soon!"
-		root_path 
+		root_path 	
     end
 
     def current_cart
-		begin
+		begin	
 			if current_user
-			    Cart.find(current_user.cart_id) 
-			else
-				Cart.find(session[:cart_id])
+				cart = Cart.find_by(user_id: current_user.id, purchased_at: nil) 
+				cart.present? ? session[:cart_id] = cart.id : session[:cart_id] ? cart = Cart.find(session[:cart_id]).update(user_id: current_user.id) : ''				    
 			end
-		rescue ActiveRecord::RecordNotFound
-			cart = Cart.create			
+			Cart.find(session[:cart_id])
+	    rescue ActiveRecord::RecordNotFound
+			cart = Cart.create		
 			session[:cart_id] = cart.id
-			if current_user
-				current_user.cart_id = cart.id
-				current_user.save
-			end
 			cart
 		end
 	end

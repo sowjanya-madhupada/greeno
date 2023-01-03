@@ -12,7 +12,7 @@
    <div class="container">
       <div class="row">
            
-           <% (Store.all).each do |p| %>
+           <% (Store.where.not(quantity: 0)).each do |p| %>
          <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
             <div class="plants-box">
                <% if p.plant_image.attached? %>

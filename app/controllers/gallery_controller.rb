@@ -1,6 +1,6 @@
 class GalleryController < ApplicationController
   def index
-    @plants = Store.all
+    @plants = Store.where.not(quantity: 0)
     return @plants if params[:q].blank? && params[:filter]=="All"
     @plants = @plants.where("name like? ","%"+params[:q].to_s+"%") if params[:q]
     filter_array = ["Flowers","Indoor","Outdoor","Gifts"]

@@ -1,5 +1,7 @@
 class Cart < ApplicationRecord
 	has_many :line_items, dependent: :destroy
+	belongs_to :user, optional: true
+	has_one :conversation
 
 	def add_plant(store_id)
 		current_item = line_items.find_by(store_id: store_id)
