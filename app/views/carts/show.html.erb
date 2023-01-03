@@ -1,4 +1,4 @@
-<% if @cart.line_items.empty? %>   
+<% if @cart.line_items.empty?  %>   
    <%= render 'shared/plant' %>
 <% else %>
     <h3>Your Cart</h3>
@@ -48,10 +48,18 @@
        <%= link_to new_charge_path, class: "btn btn-success" do %>
             Checkout
         <% end %>
+
+       <%= link_to conversations_path(sender_id: current_user.id, recipient_id: User.admin.ids), method: "post", class: "btn btn-success" do %>
+        Contact Admin
+    <% end %>
     <% else %>
        <%= link_to new_user_session_path, class: "btn btn-success" do %>
             Login To Checkout
         <% end %>
+        <%= link_to new_user_session_path, class: "btn btn-success" do %>
+            Contact Admin
+        <% end %>
     <% end %>
+    
 
 <% end %>
