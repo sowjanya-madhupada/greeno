@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   describe "validations" do
-    user = User.create(name: "Tester", email: "test@gmail.com", password: "password", password_confirmation: 'password', phone_number: "2129056065")
+    let(:user) {build :user, admin: true}
     it "password should have corect length" do
       user.password = "1"
       expect(user).to be_invalid
@@ -34,6 +34,13 @@ RSpec.describe User, type: :model do
         user.phone_number = "3333333333333333"
         expect(user).to be_invalid
       end
+    end
+  end
+
+  describe "Associations" do 
+    it "user has one cart" do 
+      user = User.reflect_on_association(:cart)
+      expect(user.macro).to eq(:has_one)
     end
   end
 
