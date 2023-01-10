@@ -39,7 +39,7 @@ RSpec.describe StoresController, type: :controller do
 	    
 	    it "update store" do 
 	    	sign_in admin
-	    	put :update, params: {id: store.id, store: {name: "aloe vera plant", price: 500, quantity: 3} }
+	    	patch :update, params: {id: store.id, store: {name: "aloe vera plant", price: 500, quantity: 3} }
 	    	expect(response).to redirect_to(store_path)
 	    end 
 
