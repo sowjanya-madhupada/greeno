@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe StoresController, type: :controller do
+	let(:user) {create :user, confirmed_at: Date.yesterday}
 	let(:admin) {create :user, :admin, confirmed_at: Date.yesterday}
 	let(:photo) do
 	    Rack::Test::UploadedFile.new(
@@ -10,19 +11,31 @@ RSpec.describe StoresController, type: :controller do
 	let(:store) {create :store, plant_image: photo}
 
 	describe "store" do 
-		it "create" do 
+		it "create when admin" do 
 			sign_in admin
 			post :create, params: { store: {name: "aloe vera", price: 300, quantity: 2, plant_image: photo}}
 		    expect(store).to be_persisted
 		end
+		it "create when admin" do 
+			sign_in user
+			post :create, params: { store: {name: "aloe vera", price: 300, quantity: 2, plant_image: photo}}
+		    expect(response).to redirect_to(root_path)
+		end
 	end
 
 	describe "get" do 
-        it "index" do 
+        it "index for admin" do 
 			sign_in admin
 			get :index
 			expect(response).to render_template(:index)
 		end
+
+		it "index for user" do 
+			sign_in user
+			get :index
+			expect(response).to redirect_to(root_path)
+		end
+
 
 		it "show" do 
 	    	sign_in admin
