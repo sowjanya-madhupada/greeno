@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Message, type: :model do
-  let(:user1) {create :user, confirmed_at: Date.yesterday}
-  let(:user2) {create :user, confirmed_at: Date.yesterday}
-  let(:conversation) {create :conversation, sender_id: user1.id, recipient_id: user2.id}
-  let(:message) {create :message, user: user1, conversation: conversation}
+  let(:user) {create :user, confirmed_at: Date.yesterday}
+  let(:admin) {create :user,:admin, confirmed_at: Date.yesterday}
+  let(:conversation) {create :conversation, sender: user, recipient: admin}
+  let(:message) {create :message, user: user, conversation: conversation}
 
 
   describe "Validations" do 
@@ -30,14 +30,12 @@ RSpec.describe Message, type: :model do
 
 
   describe Message do
-    it "should belongs_to" do
-      message = Message.reflect_on_association(:conversation)
-      expect(message.macro).to eq(:belongs_to)
+    it "should belongs to conversation" do
+      should belong_to(:conversation)
     end
 
-    it "should belongs_to" do
-      message = Message.reflect_on_association(:user)
-      expect(message.macro).to eq(:belongs_to)
+    it "should belongs to user" do
+      should belong_to(:user)
     end
   end
 end

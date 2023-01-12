@@ -20,5 +20,12 @@ RSpec.describe Store, type: :model do
       expect(store).to be_invalid
     end
   end
+
+  describe "store" do 
+    it "has one attached image" do 
+      should have_one_attached(:plant_image)
+    end 
+  end
+
     
 end

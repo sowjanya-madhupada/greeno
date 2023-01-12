@@ -37,10 +37,21 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe "Associations" do 
-    it "user has one cart" do 
-      user = User.reflect_on_association(:cart)
-      expect(user.macro).to eq(:has_one)
+  describe "admin?" do
+    it "is user is admin" do 
+      user = build :user, :admin
+      expect(user).to be_admin 
+    end 
+    it "user is not admin" do 
+      user = build :user
+      expect(user).not_to be_admin 
+    end
+  end
+
+
+  describe "user" do 
+    it "has one cart" do 
+      should have_one(:cart)
     end
   end
 

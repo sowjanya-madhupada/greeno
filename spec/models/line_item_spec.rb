@@ -19,15 +19,13 @@ RSpec.describe LineItem, type: :model do
   end
 
 
-  describe "Associations" do
+  describe "line item" do
     it "should belongs to cart" do
-      line_item = LineItem.reflect_on_association(:cart)
-      expect(line_item.macro).to eq(:belongs_to)
+      should belong_to(:cart)
     end
 
     it "should belongs to store" do
-      line_item = LineItem.reflect_on_association(:store)
-      expect(line_item.macro).to eq(:belongs_to)
+      should belong_to(:store)
     end
 
   end

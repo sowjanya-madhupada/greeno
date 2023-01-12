@@ -1,21 +1,16 @@
+#frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe Cart, type: :model do
-  describe "Associations" do
-    it "should have many line items" do
-      cart = Cart.reflect_on_association(:line_items)
-      expect(cart.macro).to eq(:has_many)
+  describe "cart" do
+    it "has many line items" do
+      should have_many(:line_items)
     end
-
-    it "should has one conversation" do
-      cart = Cart.reflect_on_association(:conversation)
-      expect(cart.macro).to eq(:has_one)
+    it "belongs to user" do
+      should belong_to(:user).optional
     end
-
-    it "should belongs to user" do
-      cart = Cart.reflect_on_association(:user)
-      expect(cart.macro).to eq(:belongs_to)
+    it "has one conversation" do
+      should have_one(:conversation)
     end
-
   end
 end
