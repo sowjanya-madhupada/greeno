@@ -22,7 +22,11 @@ class CartsController < ApplicationController
 
   def destroy
     @cart = Cart.find(params[:id])
-    @cart.destroy
-    redirect_to gallery_index_path, notice: "your cart was successfully deleted"
+    if (@cart.id == session[:cart_id] )
+      @cart.destroy
+      redirect_to gallery_index_path, notice: "your cart was successfully deleted"
+    else
+      redirect_to root_path, alert: "You do not have access for the cart to delete"  
+    end
   end
 end
